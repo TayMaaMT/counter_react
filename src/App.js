@@ -5,6 +5,7 @@ import {
   faPlusCircle,
   faMinusCircle,
   faShoppingCart,
+  faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -53,9 +54,18 @@ class App extends Component {
     this.setState({ buttons: update });
   };
 
+  reset = () => {
+    const update = this.state.buttons.map((item) => {
+      item.count = 0;
+      return item;
+    });
+    this.setState({ buttons: update, count_item: 0 });
+  };
+
   render() {
     const plusItem = <FontAwesomeIcon icon={faPlusCircle} />;
     const minusItem = <FontAwesomeIcon icon={faMinusCircle} />;
+    const reset = <FontAwesomeIcon icon={faSyncAlt} />;
     const element = (
       <div className="App">
         <div className="header">
@@ -67,14 +77,17 @@ class App extends Component {
           <div className="text">items</div>
         </div>
         <div className="container_btns">
+          <Button className="reset" title={reset} action={() => this.reset()} />
           {this.state.buttons.map((item) => (
             <div class="buttons">
               <div className="count_button">{item.count}</div>
               <Button
+                className="plusItem"
                 title={plusItem}
                 action={() => this.incrementCount(item.id)}
               />
               <Button
+                className="minusItem"
                 title={minusItem}
                 action={() => this.decrementCount(item.id)}
                 disabled={item.disabled}

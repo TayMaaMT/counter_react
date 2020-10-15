@@ -20,9 +20,16 @@
   flex-direction: column;
 }
 Button{
-  background-color: rgb(233, 29, 29);
+
   margin-right: 10px;
+  border: none;
 } 
+.reset{
+  background-color: aquamarine;
+}
+.minusItem{
+  background-color: red;
+}
 
 @keyframes App-logo-spin {
   from {
